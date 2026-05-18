@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MGA – Maçonnerie Gervais &amp; Associés Inc.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            brick: {
+              50:  '#fdf5f3',
+              100: '#fce8e3',
+              200: '#fad5cc',
+              300: '#f5b6a7',
+              400: '#ed8b73',
+              500: '#e16a4d',
+              600: '#cd4f30',
+              700: '#ac3f25',
+              800: '#8e3722',
+              900: '#763323',
+              950: '#40170e',
+            },
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+
+    .brick-pattern {
+      background-color: #1c1917;
+      background-image:
+        linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 80px 35px;
+    }
+
+    .hero-overlay {
+      background: linear-gradient(170deg, rgba(12,10,9,0.95) 0%, rgba(28,25,23,0.80) 40%, rgba(12,10,9,0.92) 100%);
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px -12px rgba(0,0,0,0.4);
+    }
+    .project-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .nav-link {
+      position: relative;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #cd4f30;
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .stat-number {
+      background: linear-gradient(135deg, #e16a4d, #cd4f30);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+    .float-anim {
+      animation: float 6s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body class="bg-stone-950 text-stone-200 font-sans antialiased">
+
+  <!-- ========== NAV ========== -->
+  <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300 bg-stone-950/80 backdrop-blur-md border-b border-stone-800/50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="#accueil" class="flex items-center gap-3 group">
+        <img src="logo-rbq.svg" alt="MGA Logo" class="h-20 w-auto" />
+      </a>
+      <div class="hidden md:flex items-center gap-8 text-sm font-medium text-stone-400">
+        <a href="#services" class="nav-link hover:text-white transition-colors">Services</a>
+        <a href="#projets" class="nav-link hover:text-white transition-colors">Projets</a>
+        <a href="#contact" class="px-5 py-2.5 bg-brick-600 hover:bg-brick-500 text-white rounded-lg transition-colors font-semibold text-sm">Contact</a>
+      </div>
+      <button id="menu-btn" class="md:hidden text-stone-300 hover:text-white" aria-label="Menu">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-stone-900/95 backdrop-blur-md border-t border-stone-800">
+      <div class="px-6 py-4 flex flex-col gap-4 text-sm font-medium text-stone-300">
+        <a href="#services" class="hover:text-white transition-colors py-2">Services</a>
+        <a href="#projets" class="hover:text-white transition-colors py-2">Projets</a>
+        <a href="#contact" class="py-2.5 bg-brick-600 hover:bg-brick-500 text-white rounded-lg transition-colors font-semibold text-center">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ========== HERO ========== -->
+  <section id="accueil" class="relative brick-pattern">
+    <div class="hero-overlay absolute inset-0"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-6 pt-40 pb-24 md:pt-52 md:pb-32">
+      <div class="max-w-3xl">
+        <span class="text-xs font-semibold text-brick-400 uppercase tracking-widest mb-8 block">Plus de 30 ans d'expertise</span>
+        <h1 class="font-sans text-5xl md:text-7xl font-black text-white leading-[1.1] mb-6">
+          Maçonnerie<br />
+          <span class="text-brick-400">Gervais &amp; Associés</span>
+        </h1>
+        <p class="text-lg md:text-xl text-stone-400 leading-relaxed max-w-2xl mb-16">
+          Spécialistes en maçonnerie commerciale, multirésidentielle et institutionnelle. Construction neuve et rénovation, partout au Québec.
+        </p>
+      </div>
+      <div id="services" class="grid md:grid-cols-2 gap-10">
+        <!-- Colonne gauche : Nos services -->
+        <div class="fade-in">
+          <div class="space-y-4">
+            <div class="group flex items-start gap-4 bg-stone-900/50 border border-stone-800/50 rounded-xl p-5 hover:bg-stone-900/80 hover:border-brick-800/30 transition-all duration-300">
+              <div class="w-11 h-11 rounded-lg bg-brick-950/60 border border-brick-800/30 flex items-center justify-center flex-shrink-0 group-hover:bg-brick-900/60 transition-colors">
+                <svg class="w-5 h-5 text-brick-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z"/></svg>
+              </div>
+              <div>
+                <h4 class="font-bold text-white mb-1">Commercial</h4>
+                <p class="text-stone-400 text-sm leading-relaxed">Bureaux, centres d'affaires, espaces commerciaux. Qualité et durabilité.</p>
+              </div>
+            </div>
+            <div class="group flex items-start gap-4 bg-stone-900/50 border border-stone-800/50 rounded-xl p-5 hover:bg-stone-900/80 hover:border-brick-800/30 transition-all duration-300">
+              <div class="w-11 h-11 rounded-lg bg-brick-950/60 border border-brick-800/30 flex items-center justify-center flex-shrink-0 group-hover:bg-brick-900/60 transition-colors">
+                <svg class="w-5 h-5 text-brick-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205l3 1m1.5.5l-1.5-.5M6.75 7.364V3h-3v18m3-13.636l10.5-3.819"/></svg>
+              </div>
+              <div>
+                <h4 class="font-bold text-white mb-1">Multirésidentiel</h4>
+                <p class="text-stone-400 text-sm leading-relaxed">Condos, immeubles locatifs, résidences pour aînés. Finition soignée.</p>
+              </div>
+            </div>
+            <div class="group flex items-start gap-4 bg-stone-900/50 border border-stone-800/50 rounded-xl p-5 hover:bg-stone-900/80 hover:border-brick-800/30 transition-all duration-300">
+              <div class="w-11 h-11 rounded-lg bg-brick-950/60 border border-brick-800/30 flex items-center justify-center flex-shrink-0 group-hover:bg-brick-900/60 transition-colors">
+                <svg class="w-5 h-5 text-brick-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z"/></svg>
+              </div>
+              <div>
+                <h4 class="font-bold text-white mb-1">Institutionnel</h4>
+                <p class="text-stone-400 text-sm leading-relaxed">Écoles, centres communautaires, établissements publics.</p>
+              </div>
+            </div>
+            <div class="group flex items-start gap-4 bg-stone-900/50 border border-stone-800/50 rounded-xl p-5 hover:bg-stone-900/80 hover:border-brick-800/30 transition-all duration-300">
+              <div class="w-11 h-11 rounded-lg bg-brick-950/60 border border-brick-800/30 flex items-center justify-center flex-shrink-0 group-hover:bg-brick-900/60 transition-colors">
+                <svg class="w-5 h-5 text-brick-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+              </div>
+              <div>
+                <h4 class="font-bold text-white mb-1">Construction neuve</h4>
+                <p class="text-stone-400 text-sm leading-relaxed">De la fondation aux finitions, maçonnerie complète.</p>
+              </div>
+            </div>
+            <div class="group flex items-start gap-4 bg-stone-900/50 border border-stone-800/50 rounded-xl p-5 hover:bg-stone-900/80 hover:border-brick-800/30 transition-all duration-300">
+              <div class="w-11 h-11 rounded-lg bg-brick-950/60 border border-brick-800/30 flex items-center justify-center flex-shrink-0 group-hover:bg-brick-900/60 transition-colors">
+                <svg class="w-5 h-5 text-brick-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17l-5.384 3.172a1 1 0 01-1.451-1.054l1.029-6.003-4.362-4.25a1 1 0 01.554-1.705l6.027-.876 2.694-5.462a1 1 0 011.794 0l2.694 5.462 6.027.876a1 1 0 01.554 1.705l-4.362 4.25 1.029 6.003a1 1 0 01-1.451 1.054L12 15.17z"/></svg>
+              </div>
+              <div>
+                <h4 class="font-bold text-white mb-1">Rénovation</h4>
+                <p class="text-stone-400 text-sm leading-relaxed">Restauration et réparation de maçonnerie existante.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Colonne droite : Notre approche -->
+        <div class="fade-in">
+          <h3 class="text-2xl md:text-3xl font-bold text-white mb-6">Notre approche</h3>
+          <p class="text-stone-400 leading-relaxed mb-8">
+            Notre approche repose sur la qualité d'exécution, le respect des normes en vigueur, des échéanciers ainsi qu'une collaboration efficace avec les entrepreneurs généraux et les professionnels impliqués.
+          </p>
+          <div class="space-y-4 mb-8">
+            <div class="flex items-center gap-3">
+              <div class="w-7 h-7 rounded-lg bg-brick-600/20 flex items-center justify-center flex-shrink-0">
+                <svg class="w-3.5 h-3.5 text-brick-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              </div>
+              <span class="font-semibold text-white text-sm">Qualité d'exécution</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-7 h-7 rounded-lg bg-brick-600/20 flex items-center justify-center flex-shrink-0">
+                <svg class="w-3.5 h-3.5 text-brick-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              </div>
+              <span class="font-semibold text-white text-sm">Respect des normes</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-7 h-7 rounded-lg bg-brick-600/20 flex items-center justify-center flex-shrink-0">
+                <svg class="w-3.5 h-3.5 text-brick-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              </div>
+              <span class="font-semibold text-white text-sm">Respect des échéanciers</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-7 h-7 rounded-lg bg-brick-600/20 flex items-center justify-center flex-shrink-0">
+                <svg class="w-3.5 h-3.5 text-brick-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              </div>
+              <span class="font-semibold text-white text-sm">Collaboration efficace</span>
+            </div>
+          </div>
+          <div class="bg-stone-900/60 border border-stone-800/40 rounded-2xl p-6 flex items-center gap-5">
+            <div class="float-anim flex-shrink-0">
+              <img src="logo-rbq.svg" alt="Logo RBQ" class="h-12 w-auto opacity-80" />
+            </div>
+            <div>
+              <h4 class="font-bold text-white mb-1">Détenteur de licence RBQ</h4>
+              <p class="text-stone-400 text-xs leading-relaxed">Entreprise licenciée par la Régie du bâtiment du Québec.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PROJETS ========== -->
+  <section id="projets" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16 fade-in">
+        <span class="text-brick-500 font-semibold text-sm uppercase tracking-widest">Portfolio</span>
+        <h2 class="font-sans text-4xl md:text-5xl font-black text-white mt-4">Projets réalisés</h2>
+        <p class="text-stone-400 mt-4 max-w-2xl mx-auto leading-relaxed">
+          Découvrez quelques-uns des projets majeurs sur lesquels nous avons eu le plaisir de collaborer avec des entrepreneurs généraux reconnus.
+        </p>
+      </div>
+      <div class="max-w-4xl mx-auto fade-in">
+        <div class="divide-y divide-stone-800/60">
+          <!-- Constrobourg -->
+          <div class="grid grid-cols-[1fr_auto] md:grid-cols-[200px_1fr_120px_100px] items-center gap-x-4 gap-y-1 py-5">
+            <span class="text-brick-400 font-semibold text-sm">Constrobourg</span>
+            <span class="text-white text-sm hidden md:block">Marc-Aurèle, Opale A-B, Rubis, Jules-Vernes</span>
+            <span class="text-stone-500 text-xs hidden md:block text-right">Québec</span>
+            <span class="text-stone-600 text-xs text-right">Multirésidentiel</span>
+            <span class="text-stone-400 text-sm md:hidden col-span-2">Marc-Aurèle, Opale A-B, Rubis, Jules-Vernes</span>
+            <span class="text-stone-500 text-xs md:hidden col-span-2">Québec</span>
+          </div>
+          <!-- EMD Batimo -->
+          <div class="grid grid-cols-[1fr_auto] md:grid-cols-[200px_1fr_120px_100px] items-center gap-x-4 gap-y-1 py-5">
+            <span class="text-brick-400 font-semibold text-sm">EMD Batimo</span>
+            <span class="text-white text-sm hidden md:block">Résidence L'Aubier, L'Envol, Trait-Carré, Florilège</span>
+            <span class="text-stone-500 text-xs hidden md:block text-right">Québec, Lévis</span>
+            <span class="text-stone-600 text-xs text-right">Multirésidentiel</span>
+            <span class="text-stone-400 text-sm md:hidden col-span-2">Résidence L'Aubier, L'Envol, Trait-Carré, Florilège</span>
+            <span class="text-stone-500 text-xs md:hidden col-span-2">Québec, Lévis</span>
+          </div>
+          <!-- Concréa -->
+          <div class="grid grid-cols-[1fr_auto] md:grid-cols-[200px_1fr_120px_100px] items-center gap-x-4 gap-y-1 py-5">
+            <span class="text-brick-400 font-semibold text-sm">Concréa</span>
+            <span class="text-white text-sm hidden md:block">Le Charlie, Le Vital, Huma 1-2, Cardinal Nord-Sud, Cloria</span>
+            <span class="text-stone-500 text-xs hidden md:block text-right">Lévis, Québec</span>
+            <span class="text-stone-600 text-xs text-right">Multirésidentiel</span>
+            <span class="text-stone-400 text-sm md:hidden col-span-2">Le Charlie, Le Vital, Huma 1-2, Cardinal Nord-Sud, Cloria</span>
+            <span class="text-stone-500 text-xs md:hidden col-span-2">Lévis, Québec</span>
+          </div>
+          <!-- BSL Construction -->
+          <div class="grid grid-cols-[1fr_auto] md:grid-cols-[200px_1fr_120px_100px] items-center gap-x-4 gap-y-1 py-5">
+            <span class="text-brick-400 font-semibold text-sm">BSL Construction</span>
+            <span class="text-white text-sm hidden md:block">Le Docte</span>
+            <span class="text-stone-500 text-xs hidden md:block text-right">Québec</span>
+            <span class="text-stone-600 text-xs text-right">Commercial</span>
+            <span class="text-stone-400 text-sm md:hidden col-span-2">Le Docte</span>
+            <span class="text-stone-500 text-xs md:hidden col-span-2">Québec</span>
+          </div>
+          <!-- Norexco -->
+          <div class="grid grid-cols-[1fr_auto] md:grid-cols-[200px_1fr_120px_100px] items-center gap-x-4 gap-y-1 py-5">
+            <span class="text-brick-400 font-semibold text-sm">Norexco</span>
+            <span class="text-white text-sm hidden md:block">Mission Uniainés</span>
+            <span class="text-stone-500 text-xs hidden md:block text-right">Terrebonne, Shawinigan</span>
+            <span class="text-stone-600 text-xs text-right">Institutionnel</span>
+            <span class="text-stone-400 text-sm md:hidden col-span-2">Mission Uniainés</span>
+            <span class="text-stone-500 text-xs md:hidden col-span-2">Terrebonne, Shawinigan</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CONTACT ========== -->
+  <section id="contact" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16 fade-in">
+        <span class="text-brick-500 font-semibold text-sm uppercase tracking-widest">Contactez-nous</span>
+        <h2 class="font-sans text-4xl md:text-5xl font-black text-white mt-4">Parlons de votre projet</h2>
+      </div>
+      <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <!-- Contact person -->
+        <div class="bg-stone-900/50 border border-stone-800/50 rounded-2xl p-8 md:p-10 fade-in">
+          <div class="flex items-center gap-4 mb-8">
+            <div class="w-16 h-16 rounded-2xl bg-brick-600 flex items-center justify-center text-white font-bold text-2xl">KD</div>
+            <div>
+              <h3 class="text-xl font-bold text-white">Keven Dallaire</h3>
+              <p class="text-brick-400 text-sm font-medium">Associé</p>
+            </div>
+          </div>
+          <div class="space-y-5">
+            <a href="tel:+14188083707" class="flex items-center gap-4 group">
+              <div class="w-11 h-11 rounded-xl bg-stone-800 group-hover:bg-brick-600/20 flex items-center justify-center transition-colors">
+                <svg class="w-5 h-5 text-stone-400 group-hover:text-brick-400 transition-colors" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3"/></svg>
+              </div>
+              <div>
+                <div class="text-stone-500 text-xs font-medium uppercase tracking-wider">Cellulaire</div>
+                <div class="text-white font-medium group-hover:text-brick-300 transition-colors">1 (418) 808-3707</div>
+              </div>
+            </a>
+            <a href="tel:+14188715957" class="flex items-center gap-4 group">
+              <div class="w-11 h-11 rounded-xl bg-stone-800 group-hover:bg-brick-600/20 flex items-center justify-center transition-colors">
+                <svg class="w-5 h-5 text-stone-400 group-hover:text-brick-400 transition-colors" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>
+              </div>
+              <div>
+                <div class="text-stone-500 text-xs font-medium uppercase tracking-wider">Travail</div>
+                <div class="text-white font-medium group-hover:text-brick-300 transition-colors">1 (418) 871-5957</div>
+              </div>
+            </a>
+            <a href="mailto:k.dallaire@mgainc.ca" class="flex items-center gap-4 group">
+              <div class="w-11 h-11 rounded-xl bg-stone-800 group-hover:bg-brick-600/20 flex items-center justify-center transition-colors">
+                <svg class="w-5 h-5 text-stone-400 group-hover:text-brick-400 transition-colors" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+              </div>
+              <div>
+                <div class="text-stone-500 text-xs font-medium uppercase tracking-wider">Courriel</div>
+                <div class="text-white font-medium group-hover:text-brick-300 transition-colors">k.dallaire@mgainc.ca</div>
+              </div>
+            </a>
+            <div class="flex items-center gap-4">
+              <div class="w-11 h-11 rounded-xl bg-stone-800 flex items-center justify-center">
+                <svg class="w-5 h-5 text-stone-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+              </div>
+              <div>
+                <div class="text-stone-500 text-xs font-medium uppercase tracking-wider">Bureau</div>
+                <div class="text-white font-medium">999 Chemin Industriel</div>
+                <div class="text-stone-400 text-sm">Lévis, Québec G7A 1B4</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Map / Quick CTA -->
+        <div class="flex flex-col gap-6 fade-in">
+          <div class="flex-1 bg-stone-900/50 border border-stone-800/50 rounded-2xl overflow-hidden">
+            <iframe
+              src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=999+Chemin+Industriel,+L%C3%A9vis,+QC+G7A+1B4,+Canada&zoom=10"
+              width="100%" height="100%" style="border:0; min-height:280px;" allowfullscreen="" loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade" class="rounded-2xl opacity-70 hover:opacity-100 transition-opacity"
+              title="Emplacement MGA">
+            </iframe>
+          </div>
+          <div class="bg-gradient-to-br from-brick-900/40 to-brick-950/40 border border-brick-800/30 rounded-2xl p-8 text-center">
+            <h4 class="text-white font-bold text-lg mb-2">Soumission gratuite</h4>
+            <p class="text-stone-400 text-sm mb-5">Appelez-nous ou envoyez un courriel pour discuter de votre projet.</p>
+            <a href="tel:+14188083707" class="inline-flex items-center gap-2 px-6 py-3 bg-brick-600 hover:bg-brick-500 text-white rounded-xl font-semibold transition-all text-sm">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>
+              Appeler maintenant
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="border-t border-stone-800/50 py-10">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-3">
+          <img src="logo-rbq.svg" alt="MGA Logo" class="h-8 w-auto" />
+          <span class="text-stone-400 text-sm">Maçonnerie Gervais &amp; Associés Inc.</span>
+        </div>
+        <div class="flex items-center gap-6 text-stone-500 text-sm">
+          <span>999 Chemin Industriel, Lévis QC</span>
+          <span class="hidden md:inline">&bull;</span>
+          <a href="tel:+14188083707" class="hover:text-white transition-colors">1 (418) 808-3707</a>
+        </div>
+        <p class="text-stone-600 text-xs">&copy; 2025 MGA Inc. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== SCRIPTS ========== -->
+  <script>
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+    // Close mobile menu on link click
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+    });
+
+    // Scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
